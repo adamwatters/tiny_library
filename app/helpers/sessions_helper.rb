@@ -9,6 +9,10 @@ module SessionsHelper
     !current_user.nil?
   end
 
+  def admin_user?
+    current_user.admin
+  end
+
   # Returns true if the given user is the current user
   def current_user?(user)
     user == current_user

@@ -4,7 +4,7 @@ class CreateBooks < ActiveRecord::Migration[5.0]
       t.string :title
       t.string :author
       t.integer :isbn
-      t.boolean :available
+      t.boolean :available, default: true
 
       t.timestamps
     end
