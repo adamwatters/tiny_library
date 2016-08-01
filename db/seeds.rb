@@ -1,6 +1,6 @@
 require 'csv'
 
-filename = 'hwlibrary.csv'
+filename = 'db/hwlibrary.csv'
 
 book_array = CSV.read(filename)
 book_array_no_empties = book_array.reject { |c| c.empty? }
