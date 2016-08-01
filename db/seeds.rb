@@ -5,10 +5,10 @@ filename = 'tmp/hwlibrary.csv'
 book_array = CSV.read(filename)
 book_array_no_empties = book_array.reject { |c| c.empty? }
 
-book_array_no_empties.each do |book|
+book_array_no_empties.each_with_index do |book, index|
   book_no_empties = book.reject { |c| c.empty? }
-  puts book
-  Book.create!(title: book[0], number: book[1], author: book[2], categories: book.drop(3))
+  puts index
+  Book.create!(title: book_no_empties[0], number: book_no_empties[1], author: book_no_empties[2], categories: book_no_empties.drop(3))
 end
 
 User.create!(name: "Admin User", email: "admin@admin.com", password: "adminpassword", password_confirmation: "adminpassword", admin: true)

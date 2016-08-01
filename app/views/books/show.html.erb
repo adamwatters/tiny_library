@@ -1,10 +1,22 @@
 <% provide(:title, @book.title) %>
 <div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
-      <h1>
-        <%= @book.title %>
-      </h1>
-    </section>
-  </aside>
+  <section class="user_info">
+    <h1 class="book-page_title">
+      <%= @book.title %>
+    </h1>
+    <h2 class="book-page_author">
+      <%= "Author: #{@book.author}" %>
+    </h2>
+    <h2 class="book-page_number">
+      <%= "Ref #: #{@book.number}" %>
+    </h2>
+    <h3 class="book-page_categories_label">
+      Categories
+    </h3>
+    <ul class="book-page_categories">
+      <% @book.categories.each do |c| %>
+        <%= render 'category', :category => c  %>
+      <% end %>
+    </ul>
+  </section>
 </div>
