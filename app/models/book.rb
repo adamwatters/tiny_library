@@ -5,8 +5,8 @@ class Book < ApplicationRecord
   validates :number, presence: true, uniqueness: true
 
   def self.search(search)
-    where("title LIKE ?", "%#{search}%")
-    where("author LIKE ?", "%#{search}%")
+    where("title iLIKE ?", "%#{search}%")
+    where("author iLIKE ?", "%#{search}%")
   end
 
 end

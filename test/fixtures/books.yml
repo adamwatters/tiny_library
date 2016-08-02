@@ -3,11 +3,9 @@
 one:
   title: MyString
   author: MyString
-  isbn: 1
-  available: false
+  number: 1
 
 two:
   title: MyString
   author: MyString
-  isbn: 1
-  available: false
+  number: 2
