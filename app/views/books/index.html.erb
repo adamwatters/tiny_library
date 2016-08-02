@@ -1,7 +1,15 @@
 <% provide(:title, 'All books') %>
 <h1> All Books </h1>
-<%= will_paginate %>
-<ul class="books">
+<%= form_tag(books_path, :method => "get", id: "search-form") do %>
+  <%= text_field_tag :search, params[:search], placeholder: "Search Posts" %>
+  <%= submit_tag "Search" %>
+<% end %>
+<% if params[:search] %>
   <%= render @books %>
-</ul>
-<%= will_paginate %>
+<% else %>
+  <%= will_paginate %>
+  <ul class="books">
+    <%= render @books %>
+  </ul>
+  <%= will_paginate %>
+<% end %>

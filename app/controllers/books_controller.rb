@@ -3,7 +3,11 @@ class BooksController < ApplicationController
   before_action :admin_user, only: [:new, :create, :edit, :update, :destroy]
 
   def index
-    @books = Book.paginate(page:params[:page])
+    if params[:search]
+      @books = Book.search(params[:search]).order("number DESC")
+    else
+      @books = Book.paginate(page:params[:page])
+    end
   end
 
   def show
