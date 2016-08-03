@@ -3,7 +3,9 @@
     <%= link_to "Heartwood Library", root_path, id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Books", books_path %></li>
+        <% unless admin_user? %>
+          <li><%= link_to "Books", books_path %></li>
+        <% end %>
         <% if logged_in? %>
           <li><%= link_to "Community", users_path %></li>
           <% if admin_user? %>
@@ -12,8 +14,8 @@
                 Manage Catalouge <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
+                <li><%= link_to "Books", books_path %></li>
                 <li><%= link_to "Add Book", new_book_path %></li>
-                <li><%= link_to "Export Books", "#" %></li>
               </ul>
             </li>
           <% end %>
