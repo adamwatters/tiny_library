@@ -3,7 +3,7 @@
     <%= link_to "Heartwood Library", root_path, id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
-        <% unless admin_user? %>
+        <% unless logged_in? && admin_user? %>
           <li><%= link_to "Books", books_path %></li>
         <% end %>
         <% if logged_in? %>
