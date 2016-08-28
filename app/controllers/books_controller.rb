@@ -4,7 +4,7 @@ class BooksController < ApplicationController
 
   def index
     if params[:search]
-      @books = Book.search(params[:search]).order("number DESC")
+      @books = Book.search(params[:search]).order("number ASC")
     else
       @books = Book.paginate(page:params[:page]).order("number ASC")
     end
