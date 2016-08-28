@@ -1,3 +1,10 @@
+- change sort by ref number, not handling decimals
+- search
+
+
+
+
+
 # Tiny Library
 
 This is library catalouge application build for The Heartwood School, but potentially useful for other small libraries.
