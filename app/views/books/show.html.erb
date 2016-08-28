@@ -18,5 +18,9 @@
         <%= render 'category', :category => c  %>
       <% end %>
     </ul>
+    <% if current_user && current_user.admin? %>
+      <%= link_to "delete", @book, method: :delete, data: {confirm: "You sure?"} %>
+      | <%= link_to "edit", edit_book_path(@book) %>
+    <% end %>
   </section>
 </div>
