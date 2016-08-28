@@ -1,6 +1,6 @@
 # Tiny Library
 
-This is library catalouge application build for The Heartwood School, but potentially useful for other small libraries.
+This is library catalouge application built for The Heartwood School, but potentially useful for other small libraries.
 
 ## Getting started
 
@@ -27,6 +27,3 @@ If the test suite passes, you'll be ready to run the app in a local server:
 ```
 $ rails server
 ```
-
-## TODO
-- implement search
