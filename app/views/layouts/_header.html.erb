@@ -32,6 +32,12 @@
             <li><%= link_to "Admin Log in", login_path %></li>
           <% end %>
         </ul>
+        <%= form_tag(books_path, :method => "get", class: "navbar-form navbar-right", id: "search-form") do %>
+          <%= content_tag(:div, class: "form-group") do %>
+            <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search Books" %>
+          <% end %>
+          <%= button_tag "Search", class: "btn btn-default" %>
+        <% end %>
       </div>
     </nav>
   </div>

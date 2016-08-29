@@ -105,6 +105,12 @@ aside {
 
 /* forms */
 
+nav {
+  input {
+    margin-bottom: 0px;
+  }
+}
+
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
   width: 100%;
