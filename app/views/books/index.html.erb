@@ -1,8 +1,10 @@
-<% provide(:title, 'All books') %>
-<h1> All Books </h1>
 <% if params[:search] %>
+  <h1> <%= params[:search] %> </h1>
+  <% provide(:title, params[:search])%>
   <%= render @books %>
 <% else %>
+  <h1> All Books </h1>
+  <% provide(:title, 'All books') %>
   <%= will_paginate %>
   <ul class="books">
     <%= render @books %>
