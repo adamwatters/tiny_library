@@ -18,6 +18,21 @@
         <%= render 'category', :category => c  %>
       <% end %>
     </ul>
+    <% if @book.available %>
+      Available
+      <%= form_for @book, url: checkout_book_path(@book) do |f| %>
+        <%= render 'book_error_messages' %>
+        <%= f.label :checked_out_by, "Please enter your name to check out"%>
+        <%= f.text_field :checked_out_by, class: 'form-control' %>
+        <%= f.submit "Check Out Book", class: "btn btn-primary" %>
+      <% end %>
+    <% else %>
+      Not Available
+      <%= form_for @book, url: checkin_book_path(@book) do |f| %>
+        <%= render 'book_error_messages' %>
+        <%= f.submit "Check In Book", class: "btn btn-primary" %>
+      <% end %>
+    <% end %>
     <% if current_user && current_user.admin? %>
       <%= link_to "delete", @book, method: :delete, data: {confirm: "You sure?"} %>
       | <%= link_to "edit", edit_book_path(@book) %>

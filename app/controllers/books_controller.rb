@@ -42,6 +42,26 @@ class BooksController < ApplicationController
     end
   end
 
+  def checkout
+    @book = Book.find(params[:id])
+    if @book.update_attributes(checkout_params)
+      flash[:success] = "you checked out #{@book.title}!"
+      redirect_to @book
+    else
+      render @book
+    end
+  end
+
+  def checkin
+    @book = Book.find(params[:id])
+    if @book.update_attributes({:available => true, :checked_out_by => ""})
+      flash[:success] = "Thanks for checking #{@book.title} back in!"
+      redirect_to @book
+    else
+      render @book
+    end
+  end
+
   def destroy
     book_to_destroy = Book.find(params[:id])
     flash[:success] = "#{book_to_destroy.title} deleted"
@@ -53,6 +73,10 @@ class BooksController < ApplicationController
 
   def book_params
     params.require(:book).permit(:title, :author, :number, :categories)
+  end
+
+  def checkout_params
+    params.require(:book).permit(:checked_out_by).merge({:available => false})
   end
 
 end

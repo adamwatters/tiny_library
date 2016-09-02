@@ -11,6 +11,11 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
   resources :users
-  resources :books
+  resources :books do
+    member do
+      patch 'checkin'
+      patch 'checkout'
+    end
+  end
 
 end
