@@ -29,7 +29,11 @@
               </ul>
             </li>
           <% else %>
-            <li><%= link_to "Admin Log in", login_path %></li>
+            <% if logged_in? %>
+              <li><%= link_to "Log out", logout_path, method: "delete" %></li>
+            <% else %>
+              <li><%= link_to "Log in", login_path %></li>
+            <% end %>
           <% end %>
         </ul>
         <%= form_tag(books_path, :method => "get", class: "navbar-form navbar-right", id: "search-form") do %>
