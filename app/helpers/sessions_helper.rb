@@ -10,7 +10,7 @@ module SessionsHelper
   end
 
   def admin_user?
-    current_user.admin
+    current_user && current_user.admin
   end
 
   # Returns true if the given user is the current user

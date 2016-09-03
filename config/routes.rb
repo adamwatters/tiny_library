@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
+  get    '/categories',   to: 'categories#index'
+  post '/categories',   to: 'categories#create'
   resources :users
   resources :books do
     member do

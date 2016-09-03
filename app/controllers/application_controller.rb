@@ -17,7 +17,9 @@ class ApplicationController < ActionController::Base
 
   #confirms an admin user
   def admin_user
-    redirect_to(root_url) unless
-    current_user.admin?
+    unless current_user && current_user.admin?
+      flash[:danger] = "Please log in as an admin user."
+      redirect_to(root_url)
+    end
   end
 end

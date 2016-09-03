@@ -1,0 +1,18 @@
+<h1>Categories</h1>
+<div class="row">
+  <div class="col-lg-6">
+    <ul>
+      <%= render @categories %>
+    </ul>
+  </div>
+  <div class="col-lg-6">
+    <%= form_for(:new_categories, url: categories_path) do |f| %>
+      <%= f.text_field :first_new_category, class: 'form-control' %>
+      <%= f.text_field :second_new_category, class: 'form-control' %>
+      <%= f.text_field :third_new_category, class: 'form-control' %>
+      <%= f.text_field :fourth_new_category, class: 'form-control' %>
+      <%= f.text_field :fifth_new_category, class: 'form-control' %>
+      <%= f.submit "Create Categories", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
