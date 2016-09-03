@@ -8,4 +8,9 @@ module ApplicationHelper
       page_title + " | " + base_title
     end
   end
+
+  def map_categories_to_numbers
+    debugger
+    {checked: false}
+  end
 end

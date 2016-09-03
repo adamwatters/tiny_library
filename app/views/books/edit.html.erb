@@ -10,7 +10,7 @@
       <%= f.text_field :author, class: 'form-control' %>
       <%= f.label :number %>
       <%= f.text_field :number, class: 'form-control' %>
-      <%= f.input :categories, collection: @categories, as: :check_boxes %>
+      <%= f.input :categories, collection: @categories, as: :check_boxes,  value_method: :name %>
       <%= f.submit "Edit Book", class: "btn btn-primary" %>
     <% end %>
   </div>

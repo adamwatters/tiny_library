@@ -21,7 +21,7 @@ class BooksController < ApplicationController
   end
 
   def create
-    @book = Book.new(book_params)
+    @book = Book.new(fix_categories(book_params, Category.all))
     if @book.save
       flash.now[:success] = "#{@book.title} successfully added"
       redirect_to @book
@@ -81,7 +81,6 @@ class BooksController < ApplicationController
   def fix_categories(params, all_categories)
     if params[:categories]
       params[:categories] = params[:categories].drop(1)
-      params[:categories].map!{|x| x = all_categories[x.to_i - 1].name}
     end
     params
   end
