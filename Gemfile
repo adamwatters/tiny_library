@@ -14,6 +14,7 @@ gem 'jquery-rails', '4.1.1'
 gem 'turbolinks',   '5.0.0'
 gem 'jbuilder',     '2.4.1'
 gem 'pg', '0.18.4'
+gem 'simple_form'
 
 group :development, :test do
   gem 'byebug',  '9.0.0', platform: :mri
