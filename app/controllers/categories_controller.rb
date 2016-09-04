@@ -7,13 +7,24 @@ class CategoriesController < ApplicationController
 
   def create
     saved_category_names = []
+    unsaved_category_names = []
     new_categories_params.each do |key, category_name|
       new_category = Category.new(:name => category_name);
       if new_category.save
         saved_category_names << category_name
+      else
+        debugger
+        unless category_name.empty?
+          unsaved_category_names << category_name
+        end
       end
     end
-    flash.now[:success] = "#{saved_category_names} added to categories"
+    unless saved_category_names.empty?
+      flash.now[:success] = "#{saved_category_names} added to categories"
+    end
+    unless unsaved_category_names.empty?
+      flash.now[:danger] = "#{unsaved_category_names} not added. Do they already exist?"
+    end
     @categories = Category.all
     render 'index'
   end

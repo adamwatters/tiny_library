@@ -1,18 +1,22 @@
 <h1>Categories</h1>
 <div class="row">
-  <div class="col-lg-6">
-    <ul>
-      <%= render @categories %>
-    </ul>
-  </div>
-  <div class="col-lg-6">
+  <div class="col-md-4">
+    <h3 class="categories_add_title">Add Categories</h3>
     <%= form_for(:new_categories, url: categories_path) do |f| %>
       <%= f.text_field :first_new_category, class: 'form-control' %>
       <%= f.text_field :second_new_category, class: 'form-control' %>
       <%= f.text_field :third_new_category, class: 'form-control' %>
       <%= f.text_field :fourth_new_category, class: 'form-control' %>
       <%= f.text_field :fifth_new_category, class: 'form-control' %>
-      <%= f.submit "Create Categories", class: "btn btn-primary" %>
+      <%= f.submit "Create New Categories", class: "categories_add_button btn btn-primary" %>
     <% end %>
+  </div>
+  <div class="col-md-8">
+    <ul class="categories_index_column">
+      <%= render @categories.take((@categories.length / 2)) %>
+    </ul>
+    <ul class="categories_index_column">
+      <%= render @categories.drop((@categories.length / 2)) %>
+    </ul>
   </div>
 </div>

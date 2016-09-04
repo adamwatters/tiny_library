@@ -1,7 +1,11 @@
 <% if params[:search] %>
   <h1> <%= params[:search] %> </h1>
   <% provide(:title, params[:search])%>
-  <%= render @books %>
+  <div class="row">
+    <ul class="books">
+      <%= render @books %>
+    </ul>
+  </div>
 <% else %>
   <h1> All Books </h1>
   <% provide(:title, 'All books') %>

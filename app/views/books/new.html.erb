@@ -1,17 +1,27 @@
 <% provide(:title, 'Add book') %>
 <h1>Add Book</h1>
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= simple_form_for @book do |f| %>
+<%= simple_form_for @book do |f| %>
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
       <%= render 'book_error_messages' %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 col-md-offset-1">
       <%= f.label :title %>
       <%= f.text_field :title, class: 'form-control' %>
       <%= f.label :author %>
       <%= f.text_field :author, class: 'form-control' %>
       <%= f.label :number %>
       <%= f.text_field :number, class: 'form-control' %>
-      <%= f.input :categories, collection: @categories, as: :check_boxes, value_method: :name %>
-      <%= f.submit "Add Book", class: "btn btn-primary" %>
-    <% end %>
+    </div>
+    <div class="col-md-8">
+      <%= f.input :categories, wrapper_html: { class: 'category_checkboxes' }, collection: @categories, as: :check_boxes, value_method: :name %>
+    </div>
   </div>
-</div>
+  <div class="row">
+    <div class="col-md-2 col-md-offset-5">
+      <%= f.submit "Add Book", class: "category_submit_button category_submit_button btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

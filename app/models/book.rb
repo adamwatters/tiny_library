@@ -8,4 +8,8 @@ class Book < ApplicationRecord
     where("title ILIKE ? OR author ILIKE ?", "%#{search}%", "%#{search}%")
   end
 
+  def self.search(search)
+    where("title ILIKE ? OR author ILIKE ?", "%#{search}%", "%#{search}%")
+  end
+
 end

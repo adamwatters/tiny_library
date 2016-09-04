@@ -1,6 +1,6 @@
 <% provide(:title, @book.title) %>
 <div class="row">
-  <section class="user_info">
+  <div class="col-md-5 col-md-offset-1">
     <h1 class="book-page_title">
       <%= @book.title %>
     </h1>
@@ -18,26 +18,32 @@
         <%= render 'category', :category => c  %>
       <% end %>
     </ul>
-    <% if logged_in? %>
+  </div>
+  <% if logged_in? %>
+    <div class="book_show_controls col-md-5">
       <% if @book.available %>
-        Available
+        <span class="book_show_available">This book is available!</span>
         <%= form_for @book, url: checkout_book_path(@book) do |f| %>
           <%= render 'book_error_messages' %>
-          <%= f.label :checked_out_by, "Please enter your name to check out"%>
-          <%= f.text_field :checked_out_by, class: 'form-control' %>
-          <%= f.submit "Check Out Book", class: "btn btn-primary" %>
+          <%= f.label :checked_out_by, "Please enter your email to check out"%>
+          <%= f.email_field :checked_out_by, class: 'form-control' %>
+          <%= f.submit "Check Out Book", class: "book_show_button btn btn-primary" %>
         <% end %>
       <% else %>
-        <%= "Checked out by #{@book.checked_out_by}" %>
+        <% if current_user && current_user.admin? %>
+          <%= "Checked out by #{@book.checked_out_by}" %>
+        <% else %>
+          <%= "This book is officially checked out. Is it back in the library? If so, go ahead and..."%>
+        <% end %>
         <%= form_for @book, url: checkin_book_path(@book) do |f| %>
           <%= render 'book_error_messages' %>
-          <%= f.submit "Check In Book", class: "btn btn-primary" %>
+          <%= f.submit "Check In Book", class: "book_show_button btn btn-primary" %>
         <% end %>
       <% end %>
       <% if current_user && current_user.admin? %>
-        <%= link_to "delete", @book, method: :delete, data: {confirm: "You sure?"} %>
-        | <%= link_to "edit", edit_book_path(@book) %>
+        <%= link_to "Delete Book", @book, method: :delete, data: {confirm: "You sure?"}, class: "book_show_button btn btn-primary"%>
+        <%= link_to "Edit Book", edit_book_path(@book), class: "book_show_button btn btn-primary"%>
       <% end %>
-    <% end %>
-  </section>
+    </div>
+  <% end %>
 </div>

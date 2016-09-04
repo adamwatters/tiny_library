@@ -1,3 +1,27 @@
 // Place all the styles related to the Books controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+div.pagination {
+    padding-left: 32px;
+}
+
+.book_show_button {
+    width: 100%;
+    margin-top: 16px;
+}
+
+.book_show_controls {
+    margin-top: 20px;
+}
+
+.book_show_available {
+    font-size: 2em;
+}
+
+.books {
+    li {
+        padding-top:  2px;
+        padding-bottom:  2px;
+    }
+}
