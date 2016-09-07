@@ -1,17 +1,72 @@
 <% if params[:search] %>
   <h1> <%= params[:search] %> </h1>
-  <% provide(:title, params[:search])%>
   <div class="row">
-    <ul class="books">
-      <%= render @books %>
-    </ul>
+    <div class="col-md-3 col-md-offset-1">
+      <h2>Search</h2>
+      <%= form_tag(books_path, :method => "get") do %>
+        <%= content_tag(:div, class: "form-group") do %>
+          <%= text_field_tag :filter, params[:filter], class: "form-control", placeholder: "Filter Books" %>
+        <% end %>
+        <% @categories.each do |c| %>
+          <%= label_tag c.name %>
+          <%= radio_button_tag "filter", c.name %>
+        <% end %>
+        <%= button_tag "Browse", class: "btn btn-default" %>
+      <% end %>
+    </div>
+    <div class="col-md-8">
+      <% provide(:title, params[:search])%>
+      <ul class="books">
+        <%= render @books %>
+      </ul>
+    </div>
+  </div>
+<% elsif params[:filter] %>
+  <h1> <%= params[:filter] %> </h1>
+  <div class="row">
+    <div class="col-md-3 col-md-offset-1">
+      <h2>Search</h2>
+      <%= form_tag(books_path, :method => "get") do %>
+        <%= content_tag(:div, class: "form-group") do %>
+          <%= text_field_tag :filter, params[:filter], class: "form-control", placeholder: "Filter Books" %>
+        <% end %>
+        <% @categories.each do |c| %>
+          <%= label_tag c.name %>
+          <%= radio_button_tag "filter", c.name %>
+        <% end %>
+        <%= button_tag "Browse", class: "btn btn-default" %>
+      <% end %>
+    </div>
+    <div class="col-md-8">
+      <% provide(:title, params[:search])%>
+      <ul class="books">
+        <%= render @books %>
+      </ul>
+    </div>
   </div>
 <% else %>
   <h1> All Books </h1>
-  <% provide(:title, 'All books') %>
-  <%= will_paginate %>
-  <ul class="books">
-    <%= render @books %>
-  </ul>
-  <%= will_paginate %>
+  <div class="row">
+    <div class="col-md-3 col-md-offset-1">
+      <h2>Search</h2>
+      <%= form_tag(books_path, :method => "get") do %>
+        <%= content_tag(:div, class: "form-group") do %>
+          <%= text_field_tag :filter, params[:filter], class: "form-control", placeholder: "Filter Books" %>
+        <% end %>
+        <% @categories.each do |c| %>
+          <%= label_tag c.name %>
+          <%= radio_button_tag "filter", c.name %>
+        <% end %>
+        <%= button_tag "Browse", class: "btn btn-default" %>
+      <% end %>
+    </div>
+    <div class="col-md-8">
+      <% provide(:title, 'All books') %>
+      <%= will_paginate %>
+      <ul class="books">
+        <%= render @books %>
+      </ul>
+      <%= will_paginate %>
+    </div>
+  </div>
 <% end %>

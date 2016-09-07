@@ -4,7 +4,10 @@ class BooksController < ApplicationController
   before_action :logged_in_user, only: [:checkout, :checkin]
 
   def index
-    if params[:search]
+    @categories = Category.all
+    if params[:filter]
+      @books = Book.filter(params[:filter]).order("number ASC")
+    elsif params[:search]
       @books = Book.search(params[:search]).order("number ASC")
     else
       @books = Book.paginate(page:params[:page]).order("number ASC")
