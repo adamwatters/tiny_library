@@ -1,0 +1,6 @@
+<div>
+  <h2>Browse</h2>
+  <% @categories.each do |c| %>
+    <%= link_to c.name, "/books?#{c.name}" %>
+  <% end %>
+</div>

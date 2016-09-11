@@ -1,5 +1,8 @@
 # Tiny Library
 
+##TODO
+use link with filter parameter to browse books by category
+
 This is library catalouge application built for The Heartwood School, but potentially useful for other small libraries.
 
 ## Getting started

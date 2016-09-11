@@ -2,17 +2,7 @@
   <h1> <%= params[:search] %> </h1>
   <div class="row">
     <div class="col-md-3 col-md-offset-1">
-      <h2>Search</h2>
-      <%= form_tag(books_path, :method => "get") do %>
-        <%= content_tag(:div, class: "form-group") do %>
-          <%= text_field_tag :filter, params[:filter], class: "form-control", placeholder: "Filter Books" %>
-        <% end %>
-        <% @categories.each do |c| %>
-          <%= label_tag c.name %>
-          <%= radio_button_tag "filter", c.name %>
-        <% end %>
-        <%= button_tag "Browse", class: "btn btn-default" %>
-      <% end %>
+      <%= render "filter" %>
     </div>
     <div class="col-md-8">
       <% provide(:title, params[:search])%>
@@ -25,17 +15,7 @@
   <h1> <%= params[:filter] %> </h1>
   <div class="row">
     <div class="col-md-3 col-md-offset-1">
-      <h2>Search</h2>
-      <%= form_tag(books_path, :method => "get") do %>
-        <%= content_tag(:div, class: "form-group") do %>
-          <%= text_field_tag :filter, params[:filter], class: "form-control", placeholder: "Filter Books" %>
-        <% end %>
-        <% @categories.each do |c| %>
-          <%= label_tag c.name %>
-          <%= radio_button_tag "filter", c.name %>
-        <% end %>
-        <%= button_tag "Browse", class: "btn btn-default" %>
-      <% end %>
+      <%= render "filter" %>
     </div>
     <div class="col-md-8">
       <% provide(:title, params[:search])%>
@@ -48,17 +28,7 @@
   <h1> All Books </h1>
   <div class="row">
     <div class="col-md-3 col-md-offset-1">
-      <h2>Search</h2>
-      <%= form_tag(books_path, :method => "get") do %>
-        <%= content_tag(:div, class: "form-group") do %>
-          <%= text_field_tag :filter, params[:filter], class: "form-control", placeholder: "Filter Books" %>
-        <% end %>
-        <% @categories.each do |c| %>
-          <%= label_tag c.name %>
-          <%= radio_button_tag "filter", c.name %>
-        <% end %>
-        <%= button_tag "Browse", class: "btn btn-default" %>
-      <% end %>
+      <%= render "filter" %>
     </div>
     <div class="col-md-8">
       <% provide(:title, 'All books') %>
