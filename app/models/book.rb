@@ -3,12 +3,24 @@ class Book < ApplicationRecord
   validates :author, presence: true
   validates :number, presence: true, uniqueness: true
 
-  def self.filter(filter)
-    where("'#{filter}' = ANY (categories)")
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
+  validates :checked_out_by, presence: true, unless: :available, length: {maximum: 255},
+    format: { with: VALID_EMAIL_REGEX }
+
+  def self.checked_out_search()
+    where("available = false")
   end
 
-  def self.search(search)
-    where("title ILIKE ? OR author ILIKE ?", "%#{search}%", "%#{search}%")
+  def self.category_search(category)
+    where("'#{category}' = ANY (categories)")
+  end
+
+  def self.author_search(author)
+    where("author ILIKE ?", "%#{author}%")
+  end
+
+  def self.title_search(title)
+    where("title ILIKE ?", "%#{title}%")
   end
 
 end

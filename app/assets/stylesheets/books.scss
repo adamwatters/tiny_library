@@ -20,8 +20,28 @@ div.pagination {
 }
 
 .books {
+    margin-bottom: 24px;
     li {
         padding-top:  2px;
         padding-bottom:  2px;
     }
+}
+
+.books_category-link {
+    display: block;
+}
+
+.books_nav {
+    border: 1px solid grey;
+    padding: 10px;
+    margin-bottom: 16px;
+}
+
+.books_search-form {
+    margin-bottom: 16px;
+}
+
+ul.pagination,
+div.pagination {
+    margin-top: 0px;
 }

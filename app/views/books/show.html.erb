@@ -33,7 +33,7 @@
         <% if current_user && current_user.admin? %>
           <%= "Checked out by #{@book.checked_out_by}" %>
         <% else %>
-          <%= "This book is officially checked out. Is it back in the library? If so, go ahead and..."%>
+          <%= "This book is officially checked out. Is it back in the library? If so, go ahead and check it in"%>
         <% end %>
         <%= form_for @book, url: checkin_book_path(@book) do |f| %>
           <%= render 'book_error_messages' %>

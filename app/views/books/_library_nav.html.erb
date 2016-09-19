@@ -1,0 +1,23 @@
+<div class="books_nav">
+  <div>
+    <%= link_to "All Books", "/books", class: "books_category-link " %>
+    <%= link_to "Checked Out Books", "/books?checked_out=true", class: "books_category-link " %>
+    <h2>Search library</h2>
+    <%= form_tag(books_path, :method => "get", class: "books_search-form") do %>
+      <%= content_tag(:div, class: "form-group") do %>
+        <%= text_field_tag :title, params[:title], class: "form-control", placeholder: "Search By Title" %>
+      <% end %>
+      <%= button_tag "Search By Title", class: "btn btn-default" %>
+    <% end %>
+    <%= form_tag(books_path, :method => "get", class: "books_search-form") do %>
+      <%= content_tag(:div, class: "form-group") do %>
+        <%= text_field_tag :author, params[:author], class: "form-control", placeholder: "Search By Author" %>
+      <% end %>
+      <%= button_tag "Search By Author", class: "btn btn-default" %>
+    <% end %>
+  </div>
+  <h2>Browse by category</h2>
+  <% @categories.each do |c| %>
+    <%= link_to c.name, "/books?category=#{c.name}", class: "books_category-link " %>
+  <% end %>
+</div>

@@ -5,10 +5,14 @@ class BooksController < ApplicationController
 
   def index
     @categories = Category.all
-    if params[:filter]
-      @books = Book.filter(params[:filter]).order("number ASC")
-    elsif params[:search]
-      @books = Book.search(params[:search]).order("number ASC")
+    if params[:checked_out] == "true"
+      @books = Book.checked_out_search.order("number ASC")
+    elsif params[:category]
+      @books = Book.category_search(params[:category]).order("number ASC")
+    elsif params[:title]
+      @books = Book.title_search(params[:title]).order("number ASC")
+    elsif params[:author]
+      @books = Book.author_search(params[:author]).order("number ASC")
     else
       @books = Book.paginate(page:params[:page]).order("number ASC")
     end
@@ -54,7 +58,8 @@ class BooksController < ApplicationController
       flash[:success] = "you checked out #{@book.title}!"
       redirect_to @book
     else
-      render @book
+      flash[:danger] = "Valid email required to checkout book"
+      redirect_to @book
     end
   end
 

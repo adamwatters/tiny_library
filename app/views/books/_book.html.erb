@@ -1,12 +1,6 @@
 <li>
   <%= link_to "#{book.title}  -  #{book.number}", book %>
-  <% if book.available %>
-    Available
-  <% else %>
-    Not Available
-  <% end %>
-  <% if current_user && current_user.admin? %>
-    | <%= link_to "delete", book, method: :delete, data: {confirm: "You sure?"} %>
-    | <%= link_to "edit", edit_book_path(book) %>
+  <% if !book.available %>
+    Checked Out
   <% end %>
 </li>

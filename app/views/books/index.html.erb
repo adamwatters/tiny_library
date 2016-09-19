@@ -1,37 +1,27 @@
-<% if params[:search] %>
-  <h1> <%= params[:search] %> </h1>
-  <div class="row">
-    <div class="col-md-3 col-md-offset-1">
-      <%= render "filter" %>
-    </div>
-    <div class="col-md-8">
-      <% provide(:title, params[:search])%>
-      <ul class="books">
-        <%= render @books %>
-      </ul>
-    </div>
-  </div>
-<% elsif params[:filter] %>
-  <h1> <%= params[:filter] %> </h1>
-  <div class="row">
-    <div class="col-md-3 col-md-offset-1">
-      <%= render "filter" %>
-    </div>
-    <div class="col-md-8">
-      <% provide(:title, params[:search])%>
-      <ul class="books">
-        <%= render @books %>
-      </ul>
-    </div>
-  </div>
+<% if params[:checked_out] %>
+  <% provide(:title, "Checked out books")%>
+  <h1> Checked out books </h1>
+  <%= render "books_unpaginated" %>
+<% elsif params[:author] %>
+  <% provide(:title, params[:author])%>
+  <h1> <%= params[:author] %> </h1>
+  <%= render "books_unpaginated" %>
+<% elsif params[:title] %>
+  <% provide(:title, params[:title])%>
+  <h1> <%= params[:title] %> </h1>
+  <%= render "books_unpaginated" %>
+<% elsif params[:category] %>
+  <% provide(:title, params[:category])%>
+  <h1> <%= params[:category] %> </h1>
+  <%= render "books_unpaginated" %>
 <% else %>
+  <% provide(:title, 'All books') %>
   <h1> All Books </h1>
   <div class="row">
-    <div class="col-md-3 col-md-offset-1">
-      <%= render "filter" %>
+    <div class="col-sm-4">
+      <%= render "library_nav" %>
     </div>
-    <div class="col-md-8">
-      <% provide(:title, 'All books') %>
+    <div class="col-sm-8">
       <%= will_paginate %>
       <ul class="books">
         <%= render @books %>
