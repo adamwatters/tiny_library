@@ -40,7 +40,8 @@ class BooksController < ApplicationController
   end
 
   def create
-    @book = Book.new(fix_categories(book_params, Category.all))
+    @categories = Category.all
+    @book = Book.new(fix_categories(book_params, @categories))
     if @book.save
       flash.now[:success] = "#{@book.title} successfully added"
       redirect_to @book
@@ -50,13 +51,14 @@ class BooksController < ApplicationController
   end
 
   def edit
-    @book = Book.find(params[:id])
     @categories = Category.all
+    @book = Book.find(params[:id])
   end
 
   def update
+    @categories = Category.all
     @book = Book.find(params[:id])
-    if @book.update_attributes(fix_categories(book_params, Category.all))
+    if @book.update_attributes(fix_categories(book_params, @categories))
       flash[:success] = "#{@book.title} successfully updated"
       redirect_to @book
     else
@@ -95,7 +97,7 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :author, :number, categories: [])
+    params.require(:book).permit(:title, :author, :number, :description, categories: [])
   end
 
   def fix_categories(params, all_categories)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160907011204) do
+ActiveRecord::Schema.define(version: 20160919155521) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20160907011204) do
     t.boolean  "available",      default: true
     t.string   "checked_out_by", default: ""
     t.text     "categories",     default: [],                array: true
+    t.text     "description"
     t.index ["categories"], name: "index_books_on_categories", using: :gin
   end
 

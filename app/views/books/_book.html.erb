@@ -1,6 +1,10 @@
 <li>
   <%= link_to "#{book.title}  -  #{book.number}", book %>
   <% if !book.available %>
-    Checked Out
+    <% if current_user && current_user.admin? %>
+      <%= "Checked out by #{book.checked_out_by}" %>
+    <% else %>
+      Checked Out
+    <% end %>
   <% end %>
 </li>

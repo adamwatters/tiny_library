@@ -1,14 +1,10 @@
 <h1>Categories</h1>
 <div class="row">
   <div class="col-md-4">
-    <h3 class="categories_add_title">Add Categories</h3>
-    <%= form_for(:new_categories, url: categories_path) do |f| %>
-      <%= f.text_field :first_new_category, class: 'form-control' %>
-      <%= f.text_field :second_new_category, class: 'form-control' %>
-      <%= f.text_field :third_new_category, class: 'form-control' %>
-      <%= f.text_field :fourth_new_category, class: 'form-control' %>
-      <%= f.text_field :fifth_new_category, class: 'form-control' %>
-      <%= f.submit "Create New Categories", class: "categories_add_button btn btn-primary" %>
+    <h3 class="categories_add_title">Add Category</h3>
+    <%= form_for(:new_category, url: categories_path) do |f| %>
+      <%= f.text_field :name, class: 'form-control' %>
+      <%= f.submit "Create New Category", class: "categories_add_button btn btn-primary" %>
     <% end %>
   </div>
   <div class="col-md-8">

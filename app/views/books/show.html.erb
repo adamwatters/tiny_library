@@ -10,14 +10,19 @@
     <h2 class="book-page_number">
       <%= "Ref #: #{@book.number}" %>
     </h2>
-    <h3 class="book-page_categories_label">
-      Categories
+    <% unless @book.description.empty? %>
+      <p><%= "Description: #{@book.description}" %></p>
+    <% end %>
+    <% unless @book.categories.empty? %>
+      <h3 class="book-page_categories_label">
+        Categories
     </h3>
-    <ul class="book-page_categories">
-      <% @book.categories.each do |c| %>
-        <%= render 'category', :category => c  %>
-      <% end %>
-    </ul>
+      <ul class="book-page_categories">
+        <% @book.categories.each do |c| %>
+          <%= render 'category', :category => c  %>
+        <% end %>
+      </ul>
+    <% end %>
   </div>
   <% if logged_in? %>
     <div class="book_show_controls col-md-5">
