@@ -23,4 +23,14 @@ class Book < ApplicationRecord
     where("title ILIKE ?", "%#{title}%")
   end
 
+  def self.to_csv
+    CSV.generate do |csv|
+      column_names = %w(number title author categories)
+      csv << column_names
+      all.sort_by{|e| e[:number]}.each do |result|
+        csv << result.attributes.values_at(*column_names)
+      end
+    end
+  end
+
 end

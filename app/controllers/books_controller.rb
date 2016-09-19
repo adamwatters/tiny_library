@@ -4,18 +4,30 @@ class BooksController < ApplicationController
   before_action :logged_in_user, only: [:checkout, :checkin]
 
   def index
-    @categories = Category.all
-    if params[:checked_out] == "true"
-      @books = Book.checked_out_search.order("number ASC")
-    elsif params[:category]
-      @books = Book.category_search(params[:category]).order("number ASC")
-    elsif params[:title]
-      @books = Book.title_search(params[:title]).order("number ASC")
-    elsif params[:author]
-      @books = Book.author_search(params[:author]).order("number ASC")
-    else
-      @books = Book.paginate(page:params[:page]).order("number ASC")
+    respond_to do |format|
+      format.html {
+        @categories = Category.all
+        if params[:checked_out] == "true"
+          @books = Book.checked_out_search.order("number ASC")
+        elsif params[:category]
+          @books = Book.category_search(params[:category]).order("number ASC")
+        elsif params[:title]
+          @books = Book.title_search(params[:title]).order("number ASC")
+        elsif params[:author]
+          @books = Book.author_search(params[:author]).order("number ASC")
+        else
+          @books = Book.paginate(page:params[:page]).order("number ASC")
+        end
+      }
+      format.csv {
+        @books = Book.all
+        send_data @books.to_csv
+      }
     end
+  end
+
+  def csv
+    @books = Book.all;
   end
 
   def show

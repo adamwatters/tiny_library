@@ -13,7 +13,6 @@ class CategoriesController < ApplicationController
       if new_category.save
         saved_category_names << category_name
       else
-        debugger
         unless category_name.empty?
           unsaved_category_names << category_name
         end
